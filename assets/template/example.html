@@ -1,56 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>icon font test</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<%- linkPath %>">
-    <style>
-        .icon_lists li{
-          float:left;
-          width: 100px;
-          height:150px;
-          text-align: center;
-          list-style: none;
-        }
-        .icon_lists .icon{
-          font-size: 42px;
-          margin: 10px 0;
-          color:#333;
-          -webkit-transition: font-size 0.25s ease-out 0s;
-          -moz-transition: font-size 0.25s ease-out 0s;
-          transition: font-size 0.25s ease-out 0s;
-        }
-        .icon_lists .icon:hover{
-          font-size: 100px;
-        }
-        .name {
-          font-size: 16px;
-        }
-        .clear:after {
-          content: '\20';
-          display: block;
-          height: 0;
-          clear: both;
-        }
-    </style>
-</head>
+  <meta charset="UTF-8">
+  <title>Icon Font Example</title>
+  <link rel="stylesheet" href="<%- linkPath %>">
+  <style>
+    ul {
+      padding: 0;
+      margin: 0;
+    }
 
+    ul li {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    a, a:visited, a:active {
+      color: currentColor;
+    }
+
+    a {
+      display: block;
+    }
+
+    .icon-list {
+      
+    }
+
+    .icon-list li {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .icon-list li:target {
+      border: 1px solid #ccc;
+    }
+
+
+    .icon {
+      font-size: 40px;
+    }
+  </style>
+</head>
 <body>
-    <h2>Icon Font</h2>
-    <ul class="icon_lists clear">
-    <% _.each(icons, function(icon) { %>
-       <li class="icon icon-<%= icon %>">
+  <h2>Icon Font</h2>
+  <ul class="icon-list">
+    <% icons.forEach(icon => { %>
+      <li id="<%= icon %>">
+        <a href="#<%= icon %>">
+          <i class="icon icon-<%= icon %>"></i>
           <div class="name"><%= icon%></div>
-       </li>
-    <% }); %>
-    </ul>
-   <div>
-     <h2>Use Icon Font</h2>
-     <pre>
-      &lt;span class=&quot;icon icon-add&quot;&gt;&lt;/span&gt;
-     </pre> 
-   </div>    
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+
+  <h2>Example</h2>
+  <pre>
+    <code id="code">
+      
+    </code>
+  </pre>
+
+
+  <script>
+    var list = document.querySelector('.icon-list'),
+        code = document.querySelector('#code');
+    for (let i = 0; i < list.children.length; i++) {
+      list.children[ i ].onclick = function() {
+        code.textContent = '<i class="icon icon-' + this.textContent.trim() +'"></i>';
+      };
+    }
+  </script>
 </body>
 </html>

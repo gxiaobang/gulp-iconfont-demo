@@ -12,7 +12,7 @@ var paths = {
   },
   example: {
     src: './assets/template/example.html',
-    dest: './build/template'
+    dest: './build/iconfont'
   }
 };
 
@@ -21,8 +21,8 @@ gulp.task('iconfont', ['example'], () => {
   gulp.src(paths.iconfont.src)
     .pipe(iconfontCss({
       fontName: 'iconfont',
-      path: './assets/template/iconfont.css',
-      targetPath: '../styles/iconfont.css',
+      path: './assets/template/iconfont.scss',
+      targetPath: '../styles/iconfont.scss',
       fontPath: '../iconfont/'
     }))
     .pipe(iconfont({
@@ -39,7 +39,7 @@ gulp.task('example', () => {
   gulp.src(paths.example.src)
     .pipe(template({
       icons: files.map(file => file.replace('.svg', '')),
-      linkPath: '../styles/iconfont.css'
+      linkPath: '../styles/iconfont.scss'
     }))
     .pipe(gulp.dest(paths.example.dest));
 });
