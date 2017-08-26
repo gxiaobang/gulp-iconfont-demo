@@ -1,11 +1,11 @@
 ## 字体图标自动化
 
-### 执行命令
-```bash
-$npm install
-```
 
 ### gulp任务
 ```bash
-$gulp iconfont
+# 安装依赖包
+npm install
+
+# 项目运行
+npm start
 ```
